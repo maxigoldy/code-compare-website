@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Code-Vergleich</h2>
-    <div class="container">
-        <textarea id="text1" placeholder="Originaltext eingeben..."></textarea>
-        <textarea id="text2" placeholder="Vergleichstext eingeben..."></textarea>
-    </div>
-    <button onclick="compareTexts()">Vergleichen</button>
-    <div class="results">
-        <pre id="result1" class="result-box"></pre>
-        <pre id="result2" class="result-box"></pre>
+    <div class="wrapper">
+        <h2>Code-Vergleich</h2>
+        <div class="container">
+            <textarea id="text1" placeholder="Originaltext eingeben..."></textarea>
+            <textarea id="text2" placeholder="Vergleichstext eingeben..."></textarea>
+        </div>
+        <button onclick="compareTexts()">Vergleichen</button>
+        <div class="results">
+            <pre id="result1" class="result-box"></pre>
+            <pre id="result2" class="result-box"></pre>
+        </div>
     </div>
 
     <script src="script.js"></script>
