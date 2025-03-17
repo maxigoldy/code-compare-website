@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-Vergleich</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        textarea {
+            width: 45%;
+            height: 200px;
+            margin: 10px;
+            font-family: monospace;
+        }
+        pre {
+            text-align: left;
+            padding: 10px;
+            white-space: pre-wrap;
+            border: 1px solid #ccc;
+        }
+        .removed {
+            background-color: #ffcccc;
+            text-decoration: line-through;
+        }
+        .added {
+            background-color: #ccffcc;
+        }
+    </style>
+</head>
+<body>
+    <h2>Text-Vergleich</h2>
+    <textarea id="text1" placeholder="Originaltext eingeben..."></textarea>
+    <textarea id="text2" placeholder="Vergleichstext eingeben..."></textarea>
+    <br>
+    <button onclick="compareTexts()">Vergleichen</button>
+    <h3>Ergebnis:</h3>
+    <pre id="result"></pre>
+
+    <script>
+        function compareTexts() {
+            const text1 = document.getElementById("text1").value.split("\n");
+            const text2 = document.getElementById("text2").value.split("\n");
+
+            let resultHTML = "";
+            let maxLength = Math.max(text1.length, text2.length);
+
+            for (let i = 0; i < maxLength; i++) {
+                if (text1[i] === text2[i]) {
+                    resultHTML += text1[i] + "\n";
+                } else if (text1[i] === undefined) {
+                    resultHTML += `<span class="added">+ ${text2[i]}</span>\n`;
+                } else if (text2[i] === undefined) {
+                    resultHTML += `<span class="removed">- ${text1[i]}</span>\n`;
+                } else {
+                    resultHTML += `<span class="removed">- ${text1[i]}</span>\n`;
+                    resultHTML += `<span class="added">+ ${text2[i]}</span>\n`;
+                }
+            }
+
+            document.getElementById("result").innerHTML = resultHTML;
+        }
+    </script>
+</body>
+</html>
