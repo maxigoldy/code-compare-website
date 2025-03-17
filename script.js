@@ -16,4 +16,10 @@ function compareTexts() {
             resultHTML1 += `<span class="removed">- ${text1[i]}</span>\n`;
         } else {
             resultHTML1 += `<span class="removed">- ${text1[i]}</span>\n`;
-            resultHTML2 += `<span class="added
+            resultHTML2 += `<span class="added">+ ${text2[i]}</span>\n`;
+        }
+    }
+
+    document.getElementById("result1").innerHTML = resultHTML1;
+    document.getElementById("result2").innerHTML = resultHTML2;
+}
