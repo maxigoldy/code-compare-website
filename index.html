@@ -3,65 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text-Vergleich</title>
+    <title>Code-Vergleich by MaxiGoldmann.de</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            text-align: center;
+            background-color: #1e1e1e;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
         }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px;
+        }
+
         textarea {
-            width: 45%;
+            width: 48%;
             height: 200px;
-            margin: 10px;
+            background-color: #252526;
+            color: #dcdcdc;
+            border: 1px solid #3c3c3c;
+            padding: 10px;
+            font-family: monospace;
+            resize: none;
+            border-radius: 5px;
+        }
+
+        button {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #005ea6;
+        }
+
+        .results {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        .result-box {
+            width: 48%;
+            background-color: #252526;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #3c3c3c;
+            overflow: auto;
+            min-height: 150px;
+            white-space: pre-wrap;
             font-family: monospace;
         }
-        pre {
-            text-align: left;
-            padding: 10px;
-            white-space: pre-wrap;
-            border: 1px solid #ccc;
-        }
+
         .removed {
-            background-color: #ffcccc;
+            background-color: rgba(255, 50, 50, 0.3);
             text-decoration: line-through;
         }
+
         .added {
-            background-color: #ccffcc;
+            background-color: rgba(50, 255, 50, 0.3);
         }
     </style>
 </head>
 <body>
-    <h2>Text-Vergleich</h2>
-    <textarea id="text1" placeholder="Originaltext eingeben..."></textarea>
-    <textarea id="text2" placeholder="Vergleichstext eingeben..."></textarea>
-    <br>
+    <h2>Code-Vergleich</h2>
+    <div class="container">
+        <textarea id="text1" placeholder="Originaltext eingeben..."></textarea>
+        <textarea id="text2" placeholder="Vergleichstext eingeben..."></textarea>
+    </div>
     <button onclick="compareTexts()">Vergleichen</button>
-    <h3>Ergebnis:</h3>
-    <pre id="result"></pre>
+    <div class="results">
+        <pre id="result1" class="result-box"></pre>
+        <pre id="result2" class="result-box"></pre>
+    </div>
 
     <script>
         function compareTexts() {
             const text1 = document.getElementById("text1").value.split("\n");
             const text2 = document.getElementById("text2").value.split("\n");
 
-            let resultHTML = "";
+            let resultHTML1 = "";
+            let resultHTML2 = "";
             let maxLength = Math.max(text1.length, text2.length);
 
             for (let i = 0; i < maxLength; i++) {
                 if (text1[i] === text2[i]) {
-                    resultHTML += text1[i] + "\n";
+                    resultHTML1 += text1[i] + "\n";
+                    resultHTML2 += text2[i] + "\n";
                 } else if (text1[i] === undefined) {
-                    resultHTML += `<span class="added">+ ${text2[i]}</span>\n`;
+                    resultHTML2 += `<span class="added">+ ${text2[i]}</span>\n`;
                 } else if (text2[i] === undefined) {
-                    resultHTML += `<span class="removed">- ${text1[i]}</span>\n`;
+                    resultHTML1 += `<span class="removed">- ${text1[i]}</span>\n`;
                 } else {
-                    resultHTML += `<span class="removed">- ${text1[i]}</span>\n`;
-                    resultHTML += `<span class="added">+ ${text2[i]}</span>\n`;
+                    resultHTML1 += `<span class="removed">- ${text1[i]}</span>\n`;
+                    resultHTML2 += `<span class="added">+ ${text2[i]}</span>\n`;
                 }
             }
 
-            document.getElementById("result").innerHTML = resultHTML;
+            document.getElementById("result1").innerHTML = resultHTML1;
+            document.getElementById("result2").innerHTML = resultHTML2;
         }
     </script>
 </body>
