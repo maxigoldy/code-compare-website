@@ -9,12 +9,15 @@ body {
     background-color: #1e1e1e;
     color: white;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    padding: 20px;
-    overflow: hidden; /* Fixiert die Höhe der Seite */
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
 }
 
 h2 {
@@ -24,8 +27,8 @@ h2 {
 .container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    max-width: 900px;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 textarea {
@@ -36,13 +39,12 @@ textarea {
     border: 1px solid #3c3c3c;
     padding: 10px;
     font-family: monospace;
-    resize: none;
     border-radius: 5px;
-    overflow: hidden; /* Kein Scrollen innerhalb der Textfelder */
+    resize: none;
+    overflow: auto; /* Falls der Text zu lang wird */
 }
 
 button {
-    margin: 20px;
     padding: 10px 20px;
     background-color: #0078d4;
     color: white;
@@ -60,28 +62,16 @@ button:hover {
 .results {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    max-width: 900px;
+    gap: 10px;
     margin-top: 20px;
 }
 
 .result-box {
     width: 48%;
+    height: 200px;
     background-color: #252526;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #3c3c3c;
-    min-height: 150px;
     white-space: pre-wrap;
-    font-family: monospace;
-    overflow: auto;
-}
-
-.removed {
-    background-color: rgba(255, 50, 50, 0.3);
-    text-decoration: line-through;
-}
-
-.added {
-    background-color: rgba(50, 255, 50, 0.3);
-}
+   
